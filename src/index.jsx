@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 import "./index.css";
 
-import Question from "./components/Question";
+import Question from "./presentational/Question";
 
 class App extends React.Component {
   state = {
