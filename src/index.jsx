@@ -8,25 +8,25 @@ import Question from "./presentational/Question";
 class App extends React.Component {
   state = {
     answers: [],
-    showingAnswer: false
+    current: 0
   };
 
-  handleAnswer = answer => {
+  makeHandleAnswer = question => answer => {
     const { questions } = this.props;
-    const { answers, showingAnswer } = this.state;
+    const { answers } = this.state;
 
-    if (showingAnswer) {
+    if (answers[question] !== undefined) {
       return;
     }
 
     this.setState(
-      {
-        answers: [...answers, answer],
-        showingAnswer: true
+      ({ answers }) => {
+        answers[question] = answer;
+        return { answers };
       },
       () => {
         setTimeout(() => {
-          this.setState({ showingAnswer: false });
+          this.setState({ current: question + 1 });
         }, 2000);
       }
     );
@@ -34,21 +34,35 @@ class App extends React.Component {
 
   render() {
     const { questions } = this.props;
-    const { orders, answers, showingAnswer } = this.state;
-
-    const current = answers.length - (showingAnswer ? 1 : 0);
-    const question = questions[current];
+    const { answers, current } = this.state;
 
     return (
       <div className="app">
-        <Question
-          question={question.question}
-          answers={[question.correct_answer, ...question.incorrect_answers]}
-          answerOrder={question.answerOrder}
-          correct={showingAnswer ? question.answerOrder.indexOf(0) : undefined}
-          selected={showingAnswer ? answers[answers.length - 1] : undefined}
-          onAnswer={this.handleAnswer}
-        />
+        <div
+          className="scroll-wrapper"
+          style={{ transform: `translateY(-${100 * current / questions.length}%)` }}
+        >
+          {questions.map((question, i) => {
+            return (
+              <Question
+                key={i}
+                question={question.question}
+                answers={[
+                  question.correct_answer,
+                  ...question.incorrect_answers
+                ]}
+                answerOrder={question.answerOrder}
+                correct={
+                  i < answers.length
+                    ? question.answerOrder.indexOf(0)
+                    : undefined
+                }
+                selected={i < answers.length ? answers[i] : undefined}
+                onAnswer={this.makeHandleAnswer(i)}
+              />
+            );
+          })}
+        </div>
       </div>
     );
   }
