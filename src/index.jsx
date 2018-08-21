@@ -8,11 +8,46 @@ import ScrollLayout from "./presentational/ScrollLayout.jsx";
 import Round from "./smart/Round.jsx";
 
 class App extends React.Component {
+  static PHASE_TO_CURRENT = {
+    LANDING: 0,
+    LOADING: 1,
+    ROUND: 2,
+  }
+
   state = {
+    phase: "LANDING",
+    questions: []
+  };
+
+  handleNewGame = () => {
+    this.setState({ phase: "LOADING" })
+
+    fetch("https://opentdb.com/api.php?amount=10&encode=url3986")
+      .then(res => res.json())
+      .then(({ response_code, results }) => {
+        const questions = results.map(sanitizeQuestion);
+        console.log(questions);
+        this.setState({ phase: "ROUND", questions });
+      });
   };
 
   render() {
-    return <Round questions={questions} />;
+    const { phase, questions } = this.state;
+
+    return (
+      <ScrollLayout current={App.PHASE_TO_CURRENT[phase]}>
+        <div>
+          <h1>Instant Trivia</h1>
+          <button onClick={this.handleNewGame}>New Game</button>
+        </div>
+
+        <div>
+          Loading...
+        </div>
+
+        {questions.length > 0 && <Round questions={questions} />}
+      </ScrollLayout>
+    );
   }
 }
 
@@ -34,22 +69,16 @@ function generateAnswerOrder(question) {
   return shuffleArray(positions);
 }
 
-fetch("https://opentdb.com/api.php?amount=10&encode=url3986")
-  .then(res => res.json())
-  .then(({ response_code, results }) => {
-    for (let result of results) {
-      result.question = decodeURIComponent(result.question);
-      result.correct_answer = decodeURIComponent(result.correct_answer);
-      result.incorrect_answers = result.incorrect_answers.map(answer =>
-        decodeURIComponent(answer)
-      );
-      result.answerOrder = generateAnswerOrder(result);
-    }
+function sanitizeQuestion(question) {
+  return {
+    ...question,
+    question: decodeURIComponent(question.question),
+    correct_answer: decodeURIComponent(question.correct_answer),
+    incorrect_answers: question.incorrect_answers.map(answer =>
+      decodeURIComponent(answer)
+    ),
+    answerOrder: generateAnswerOrder(question)
+  };
+}
 
-    console.log(results);
-
-    ReactDOM.render(
-      <App questions={results} />,
-      document.getElementById("app")
-    );
-  });
+ReactDOM.render(<App />, document.getElementById("app"));
