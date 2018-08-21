@@ -1,0 +1,18 @@
+.scroll-container {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.scroll-content {
+  transition: 500ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+.scroll-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+}

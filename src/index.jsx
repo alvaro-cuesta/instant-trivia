@@ -3,68 +3,16 @@ import ReactDOM from "react-dom";
 
 import "./index.css";
 
-import Question from "./presentational/Question";
+import Question from "./presentational/Question.jsx";
+import ScrollLayout from "./presentational/ScrollLayout.jsx";
+import Round from "./smart/Round.jsx";
 
 class App extends React.Component {
   state = {
-    answers: [],
-    current: 0
-  };
-
-  makeHandleAnswer = question => answer => {
-    const { questions } = this.props;
-    const { answers } = this.state;
-
-    if (answers[question] !== undefined) {
-      return;
-    }
-
-    this.setState(
-      ({ answers }) => {
-        answers[question] = answer;
-        return { answers };
-      },
-      () => {
-        setTimeout(() => {
-          this.setState({ current: question + 1 });
-        }, 2000);
-      }
-    );
   };
 
   render() {
-    const { questions } = this.props;
-    const { answers, current } = this.state;
-
-    return (
-      <div className="app">
-        <div
-          className="scroll-wrapper"
-          style={{ transform: `translateY(-${100 * current / questions.length}%)` }}
-        >
-          {questions.map((question, i) => {
-            return (
-              <Question
-                key={i}
-                question={question.question}
-                answers={[
-                  question.correct_answer,
-                  ...question.incorrect_answers
-                ]}
-                answerOrder={question.answerOrder}
-                correct={
-                  i < answers.length
-                    ? question.answerOrder.indexOf(0)
-                    : undefined
-                }
-                selected={i < answers.length ? answers[i] : undefined}
-                onAnswer={this.makeHandleAnswer(i)}
-              />
-            );
-          })}
-        </div>
-      </div>
-    );
+    return <Round questions={questions} />;
   }
 }
 
