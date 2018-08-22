@@ -42,10 +42,7 @@ class Round extends React.Component {
             question={question.question}
             answers={[question.correct_answer, ...question.incorrect_answers]}
             answerOrder={question.answerOrder}
-            correct={
-              i < answers.length ? question.answerOrder.indexOf(0) : undefined
-            }
-            selected={i < answers.length ? answers[i] : undefined}
+            selected={answers[i]}
             onAnswer={this.makeHandleAnswer(i)}
           />
         ))}

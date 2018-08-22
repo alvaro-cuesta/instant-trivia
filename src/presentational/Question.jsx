@@ -7,7 +7,6 @@ const Question = ({
   question,
   answers,
   answerOrder,
-  correct,
   selected,
   onAnswer
 }) => (
@@ -20,8 +19,8 @@ const Question = ({
           key={i}
           className={cx("answer", {
             selected: selected === i,
-            correct: correct !== undefined && correct === i,
-            incorrect: correct !== undefined && correct !== i
+            correct: selected !== undefined && i === 0,
+            incorrect: selected !== undefined && i !== 0
           })}
           onClick={() => onAnswer(i)}
         >
