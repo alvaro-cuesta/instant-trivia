@@ -78,11 +78,11 @@ class App extends React.Component {
   };
 
   handleCustomDifficulty = ({ target: { value } }) => {
-    this.setState({ customDifficulty: value !== '' ? value : undefined });
+    this.setState({ customDifficulty: value !== "" ? value : undefined });
   };
 
   handleCustomType = ({ target: { value } }) => {
-    this.setState({ customType: value !== '' ? value : undefined });
+    this.setState({ customType: value !== "" ? value : undefined });
   };
 
   transition = (phase, extraState) => {
@@ -130,6 +130,7 @@ class App extends React.Component {
         {(fromPhase === "CUSTOM" || phase === "CUSTOM") && (
           <div>
             <h1>Custom Game</h1>
+
             <label>
               Questions:
               <input
@@ -139,6 +140,10 @@ class App extends React.Component {
                 value={customLength}
                 onChange={this.handleCustomLength}
               />
+            </label>
+
+            <label>
+              Difficulty:
               <select
                 value={customDifficulty}
                 onChange={this.handleCustomDifficulty}
@@ -148,12 +153,17 @@ class App extends React.Component {
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
               </select>
+            </label>
+
+            <label>
+              Type:
               <select value={customType} onChange={this.handleCustomType}>
                 <option value="">Any</option>
                 <option value="multiple">Multiple Choice</option>
                 <option value="boolean">True / Fasle</option>
               </select>
             </label>
+
             <button onClick={this.handleStartCustom}>Start</button>
             <button onClick={() => this.transition("LANDING")}>Back</button>
           </div>
