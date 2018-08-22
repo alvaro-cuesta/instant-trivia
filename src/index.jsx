@@ -119,6 +119,7 @@ class App extends React.Component {
     return (
       <ScrollLayout
         current={App.PHASE_TO_CURRENT[phase]}
+        horizontal={true}
         onTransitionEnd={this.handleTransitionEnd}
       >
         {(fromPhase === "LANDING" || phase === "LANDING") && (
