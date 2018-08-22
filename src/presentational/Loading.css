@@ -1,0 +1,41 @@
+@keyframes pulse {
+  0% {
+    opacity: 0.0;
+  }
+
+  50% {
+    opacity: 1.0;
+  }
+
+  100% {
+    opacity: 1.0;
+  }
+}
+
+.loading-square {
+  display: inline-block;
+
+  background-color: #000000;
+  width: 2vw;
+  height: 2vw;
+  margin: 1vw;
+
+  animation-name: pulse;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  animation-fill-mode: both;
+  animation-duration: 1s;
+}
+
+.loading-square:nth-child(1) {
+  animation-delay: 0;
+}
+
+.loading-square:nth-child(2) {
+  animation-delay: 0.25s;
+}
+
+.loading-square:nth-child(3) {
+  animation-delay: 0.5s;
+}
