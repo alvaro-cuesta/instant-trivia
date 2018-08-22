@@ -28,15 +28,6 @@ function sanitizeQuestion(question) {
   };
 }
 
-/*
-https://opentdb.com/api.php?amount=10&token=YOURTOKENHERE
-https://opentdb.com/api_token.php?command=request
-https://opentdb.com/api_token.php?command=reset&token=YOURTOKENHERE
-https://opentdb.com/api_category.php
-https://opentdb.com/api_count.php?category=CATEGORY_ID_HERE
-https://opentdb.com/api_count_global.php
-*/
-
 export default function fetchQuestions({ amount, category, difficulty, type }) {
   const queryParams = {
     encode: "url3986"
