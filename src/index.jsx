@@ -133,41 +133,49 @@ class App extends React.Component {
           <div>
             <h1>Custom Game</h1>
 
-            <label>
-              Questions:
-              <input
-                type="number"
-                min={0}
-                step={1}
-                value={customLength}
-                onChange={this.handleCustomLength}
-              />
-            </label>
+            <div>
+              <label>
+                Questions:
+                <input
+                  type="number"
+                  min={0}
+                  step={1}
+                  value={customLength}
+                  onChange={this.handleCustomLength}
+                />
+              </label>
+            </div>
 
-            <label>
-              Difficulty:
-              <select
-                value={customDifficulty}
-                onChange={this.handleCustomDifficulty}
-              >
-                <option value="">Any</option>
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-              </select>
-            </label>
+            <div>
+              <label>
+                Difficulty:
+                <select
+                  value={customDifficulty}
+                  onChange={this.handleCustomDifficulty}
+                >
+                  <option value="">Any</option>
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                </select>
+              </label>
+            </div>
 
-            <label>
-              Type:
-              <select value={customType} onChange={this.handleCustomType}>
-                <option value="">Any</option>
-                <option value="multiple">Multiple Choice</option>
-                <option value="boolean">True / Fasle</option>
-              </select>
-            </label>
+            <div>
+              <label>
+                Type:
+                <select value={customType} onChange={this.handleCustomType}>
+                  <option value="">Any</option>
+                  <option value="multiple">Multiple Choice</option>
+                  <option value="boolean">True / Fasle</option>
+                </select>
+              </label>
+            </div>
 
-            <button onClick={this.handleStartCustom}>Start</button>
-            <button onClick={() => this.transition("LANDING")}>Back</button>
+            <div>
+              <button onClick={this.handleStartCustom}>Start</button>
+              <button onClick={() => this.transition("LANDING")}>Back</button>
+            </div>
           </div>
         )}
 
