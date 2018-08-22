@@ -3,8 +3,9 @@ import ReactDOM from "react-dom";
 
 import "./index.css";
 
-import Question from "./presentational/Question.jsx";
 import ScrollLayout from "./presentational/ScrollLayout.jsx";
+import InternalError from "./presentational/InternalError.jsx";
+import Loading from "./presentational/Loading.jsx";
 import Round from "./smart/Round.jsx";
 
 import fetchQuestions from "./fetchQuestions";
@@ -24,27 +25,16 @@ class App extends React.Component {
     customLength: 10,
     customDifficulty: undefined,
     customType: undefined,
-    questions: null
+    questions: null,
+    error: null
   };
 
   handleQuickGame = () => {
-    this.setState({ fromPhase: "LANDING", phase: "LOADING" });
+    this.transition("LOADING");
 
     fetchQuestions({ amount: 10 })
-      .then(({ response, questions }) => {
-        console.log(response, questions);
-
-        if (response !== "OK") {
-          this.transition("ERROR", { error: `Unhandled response ${response}` });
-          return;
-        }
-
-        this.transition("ROUND", { questions });
-      })
-      .catch(error => {
-        console.error(error);
-        this.transition("ERROR", { error: error.message });
-      });
+      .then(this.handleResponse)
+      .catch(this.handleError);
   };
 
   handleStartCustom = () => {
@@ -57,20 +47,8 @@ class App extends React.Component {
       difficulty: customDifficulty,
       type: customType
     })
-      .then(({ response, questions }) => {
-        console.log(response, questions);
-
-        if (response !== "OK") {
-          this.transition("ERROR", { error: `Unhandled response ${response}` });
-          return;
-        }
-
-        this.transition("ROUND", { questions });
-      })
-      .catch(error => {
-        console.error(error);
-        this.transition("ERROR", { error: error.message });
-      });
+      .then(this.handleResponse)
+      .catch(this.handleError);
   };
 
   handleCustomLength = ({ target: { value } }) => {
@@ -83,6 +61,22 @@ class App extends React.Component {
 
   handleCustomType = ({ target: { value } }) => {
     this.setState({ customType: value !== "" ? value : undefined });
+  };
+
+  handleResponse = ({ response, questions }) => {
+    console.log(response, questions);
+
+    if (response !== "OK") {
+      this.transition("ERROR", { error: `Unhandled response ${response}` });
+      return;
+    }
+
+    this.transition("ROUND", { questions });
+  };
+
+  handleError = error => {
+    console.error(error);
+    this.transition("ERROR", { error: error.message });
   };
 
   transition = (phase, extraState) => {
@@ -98,8 +92,16 @@ class App extends React.Component {
 
     this.setState({ fromPhase: null });
 
-    if (fromPhase === "ROUND") {
-      this.setState({ questions: null });
+    switch (fromPhase) {
+      case "ROUND": {
+        this.setState({ questions: null });
+      }
+
+      case "ERROR": {
+        this.setState({ error: null });
+      }
+
+      default:
     }
   };
 
@@ -169,16 +171,13 @@ class App extends React.Component {
           </div>
         )}
 
-        {(fromPhase === "LOADING" || phase === "LOADING") && (
-          <h1>Loading...</h1>
-        )}
+        {(fromPhase === "LOADING" || phase === "LOADING") && <Loading />}
 
         {(fromPhase === "ERROR" || phase === "ERROR") && (
-          <div>
-            <h1>Internal Error</h1>
-            <p>{error}</p>
-            <button onClick={() => this.transition("LANDING")}>Back</button>
-          </div>
+          <InternalError
+            error={error}
+            onBack={() => this.transition("LANDING")}
+          />
         )}
 
         {(fromPhase === "ROUND" || phase === "ROUND") && (
