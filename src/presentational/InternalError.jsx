@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const Error = ({ error, onBack }) => (
   <div>
@@ -7,3 +7,5 @@ const Error = ({ error, onBack }) => (
     <button onClick={onBack}>Back</button>
   </div>
 );
+
+export default Error;

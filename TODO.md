@@ -1,4 +1,6 @@
-# Feaures
+# TODO
+
+## Feaures
 
 - Categories
   - Select in custom
@@ -18,7 +20,9 @@
   - https://opentdb.com/api.php?amount=10&token=YOURTOKENHERE
   - https://opentdb.com/api_token.php?command=request
   - https://opentdb.com/api_token.php?command=reset&token=YOURTOKENHERE
+- Open Trivia DB license notice
+- GitHub link
 
-# Bugs
+## Bugs
 
 - Can tab across questions (should probably limit to current question)

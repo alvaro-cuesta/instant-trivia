@@ -9,7 +9,7 @@ body {
   margin: 0;
 }
 
-#app {
+#container {
     background-color: #ffd24c;
     font-family: Times, Times New Roman, Georgia, serif;
     font-size: 3.5vmin;
