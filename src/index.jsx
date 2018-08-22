@@ -12,15 +12,16 @@ class App extends React.Component {
     LANDING: 0,
     LOADING: 1,
     ROUND: 2,
-  }
+    FINISH: 0,
+  };
 
   state = {
     phase: "LANDING",
-    questions: []
+    questions: null
   };
 
   handleNewGame = () => {
-    this.setState({ phase: "LOADING" })
+    this.setState({ phase: "LOADING" });
 
     fetch("https://opentdb.com/api.php?amount=10&encode=url3986")
       .then(res => res.json())
@@ -31,21 +32,36 @@ class App extends React.Component {
       });
   };
 
+  handleFinish = () => {
+    this.setState({ phase: "FINISH" });
+  };
+
+  handleTransitionEnd = e => {
+    const { phase } = this.state;
+
+    if (phase === "FINISH") {
+      this.setState({ phase: "LANDING", questions: null });
+    }
+  };
+
   render() {
     const { phase, questions } = this.state;
 
     return (
-      <ScrollLayout current={App.PHASE_TO_CURRENT[phase]}>
+      <ScrollLayout
+        current={App.PHASE_TO_CURRENT[phase]}
+        onTransitionEnd={this.handleTransitionEnd}
+      >
         <div>
           <h1>Instant Trivia</h1>
           <button onClick={this.handleNewGame}>New Game</button>
         </div>
 
-        <div>
-          Loading...
-        </div>
+        {(phase === "LOADING" || phase === "ROUND") && <div>Loading...</div>}
 
-        {questions.length > 0 && <Round questions={questions} />}
+        {(phase === "ROUND" || phase === "FINISH") && (
+          <Round questions={questions} onFinish={this.handleFinish} />
+        )}
       </ScrollLayout>
     );
   }

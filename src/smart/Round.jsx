@@ -31,7 +31,7 @@ class Round extends React.Component {
   };
 
   render() {
-    const { questions } = this.props;
+    const { questions, onFinish } = this.props;
     const { answers, current } = this.state;
 
     return (
@@ -51,7 +51,11 @@ class Round extends React.Component {
         ))}
 
         <div>
-          <p>End game screen</p>
+          <h1>End game stats</h1>
+
+          <p>TODO</p>
+
+          <button onClick={onFinish}>Finish</button>
         </div>
       </ScrollLayout>
     );
