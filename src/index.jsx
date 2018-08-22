@@ -78,11 +78,11 @@ class App extends React.Component {
   };
 
   handleCustomDifficulty = ({ target: { value } }) => {
-    this.setState({ customDifficulty: value });
+    this.setState({ customDifficulty: value !== '' ? value : undefined });
   };
 
   handleCustomType = ({ target: { value } }) => {
-    this.setState({ customType: value });
+    this.setState({ customType: value !== '' ? value : undefined });
   };
 
   transition = (phase, extraState) => {
@@ -143,13 +143,13 @@ class App extends React.Component {
                 value={customDifficulty}
                 onChange={this.handleCustomDifficulty}
               >
-                <option>Any</option>
+                <option value="">Any</option>
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
               </select>
               <select value={customType} onChange={this.handleCustomType}>
-                <option>Any</option>
+                <option value="">Any</option>
                 <option value="multiple">Multiple Choice</option>
                 <option value="boolean">True / Fasle</option>
               </select>
