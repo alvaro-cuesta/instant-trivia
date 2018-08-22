@@ -43,6 +43,12 @@ export default function fetchQuestions({ amount, category, difficulty, type }) {
   };
 
   if (amount !== undefined) {
+    amount = parseInt(amount, 10)
+
+    if (isNaN(amount) || amount <= 0) {
+      throw new Error(`Invalid amount ${amount}`);
+    }
+
     queryParams.amount = amount;
   }
 
@@ -52,8 +58,8 @@ export default function fetchQuestions({ amount, category, difficulty, type }) {
 
   if (difficulty !== undefined) {
     if (
-      difficulty !== "eady" ||
-      difficulty !== "medium" ||
+      difficulty !== "easy" &&
+      difficulty !== "medium" &&
       difficulty !== "hard"
     ) {
       throw new Error(`Difficulty ${difficulty} unknown`);
@@ -63,7 +69,7 @@ export default function fetchQuestions({ amount, category, difficulty, type }) {
   }
 
   if (type !== undefined) {
-    if (type !== "multiple" || type !== "boolean") {
+    if (type !== "multiple" && type !== "boolean") {
       throw new Error(`Type ${type} unknown`);
     }
 
