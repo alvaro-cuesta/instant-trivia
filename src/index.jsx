@@ -7,94 +7,137 @@ import Question from "./presentational/Question.jsx";
 import ScrollLayout from "./presentational/ScrollLayout.jsx";
 import Round from "./smart/Round.jsx";
 
+import fetchQuestions from "./fetchQuestions";
+
 class App extends React.Component {
   static PHASE_TO_CURRENT = {
     LANDING: 0,
-    LOADING: 1,
-    ROUND: 2,
-    FINISH: 0,
+    CUSTOM: 1,
+    LOADING: 2,
+    ERROR: 3,
+    ROUND: 4
   };
 
   state = {
+    fromPhase: null,
     phase: "LANDING",
+    customLength: 10,
     questions: null
   };
 
-  handleNewGame = () => {
-    this.setState({ phase: "LOADING" });
+  handleQuickGame = () => {
+    this.setState({ fromPhase: "LANDING", phase: "LOADING" });
 
-    fetch("https://opentdb.com/api.php?amount=10&encode=url3986")
-      .then(res => res.json())
-      .then(({ response_code, results }) => {
-        const questions = results.map(sanitizeQuestion);
-        console.log(questions);
-        this.setState({ phase: "ROUND", questions });
+    fetchQuestions({ amount: 10 })
+      .then(({ response, questions }) => {
+        console.log(response, questions);
+
+        if (response !== "OK") {
+          this.transition('ERROR', { error: `Unhandled response ${response}` })
+          return
+        }
+
+        this.transition('ROUND', { questions })
+      })
+      .catch(error => {
+        console.error(error)
+        this.transition('ERROR', { error: error.message })
       });
   };
 
-  handleFinish = () => {
-    this.setState({ phase: "FINISH" });
+  handleStartCustom = () => {
+    const { customLength } = this.state;
+
+    this.transition('LOADING')
+
+    fetchQuestions({ amount: customLength })
+      .then(({ response, questions }) => {
+        console.log(response, questions);
+
+        if (response !== "OK") {
+          this.transition('ERROR', { error: `Unhandled response ${response}` })
+          return
+        }
+
+        this.transition('ROUND', { questions })
+      })
+      .catch(error => {
+        console.error(error)
+        this.transition('ERROR', { error: error.message })
+      });
+  };
+
+  handleCustomLength = ({ target: { value } }) => {
+    this.setState({ customLength: parseInt(value, 10) });
+  };
+
+  transition = (phase, extraState) => {
+    this.setState(state => ({
+      fromPhase: state.phase, phase,
+      ...extraState
+    }));
   };
 
   handleTransitionEnd = e => {
-    const { phase } = this.state;
+    const { fromPhase } = this.state;
 
-    if (phase === "FINISH") {
-      this.setState({ phase: "LANDING", questions: null });
+    this.setState({ fromPhase: null });
+
+    if (fromPhase === "ROUND") {
+      this.setState({ questions: null });
     }
   };
 
   render() {
-    const { phase, questions } = this.state;
+    const { fromPhase, phase, questions, error, customLength } = this.state;
 
     return (
       <ScrollLayout
         current={App.PHASE_TO_CURRENT[phase]}
         onTransitionEnd={this.handleTransitionEnd}
       >
-        <div>
-          <h1>Instant Trivia</h1>
-          <button onClick={this.handleNewGame}>New Game</button>
-        </div>
+        {(fromPhase === "LANDING" || phase === "LANDING") && (
+          <div>
+            <h1>Instant Trivia</h1>
+            <button onClick={this.handleQuickGame}>Quick Game</button>
+            <button onClick={() => this.transition('CUSTOM')}>Custom</button>
+          </div>
+        )}
 
-        {(phase === "LOADING" || phase === "ROUND") && <div>Loading...</div>}
+        {(fromPhase === "CUSTOM" || phase === "CUSTOM") && (
+          <div>
+            <h1>Custom Game</h1>
+            <label>
+              Questions:
+              <input
+                type="number"
+                value={customLength}
+                onChange={this.handleCustomLength}
+              />
+            </label>
+            <button onClick={this.handleStartCustom}>Start</button>
+            <button onClick={() => this.transition('LANDING')}>Back</button>
+          </div>
+        )}
 
-        {(phase === "ROUND" || phase === "FINISH") && (
-          <Round questions={questions} onFinish={this.handleFinish} />
+        {(fromPhase === "LOADING" || phase === "LOADING") && (
+          <h1>Loading...</h1>
+        )}
+
+        {(fromPhase === "ERROR" || phase === "ERROR") && (
+          <div>
+            <h1>Internal Error</h1>
+            <p>{error}</p>
+            <button onClick={() => this.transition('LANDING')}>Back</button>
+          </div>
+        )}
+
+        {(fromPhase === "ROUND" || phase === "ROUND") && (
+          <Round questions={questions} onFinish={() => this.transition('LANDING')} />
         )}
       </ScrollLayout>
     );
   }
-}
-
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-
-  return array;
-}
-
-function generateAnswerOrder(question) {
-  const answerCount = question.incorrect_answers.length + 1;
-  const positions = Array(answerCount)
-    .fill()
-    .map((_, i) => i);
-
-  return shuffleArray(positions);
-}
-
-function sanitizeQuestion(question) {
-  return {
-    ...question,
-    question: decodeURIComponent(question.question),
-    correct_answer: decodeURIComponent(question.correct_answer),
-    incorrect_answers: question.incorrect_answers.map(answer =>
-      decodeURIComponent(answer)
-    ),
-    answerOrder: generateAnswerOrder(question)
-  };
 }
 
 ReactDOM.render(<App />, document.getElementById("app"));
