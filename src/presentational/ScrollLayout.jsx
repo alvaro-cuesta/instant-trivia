@@ -2,13 +2,13 @@ import React from "react";
 
 import "./ScrollLayout.css";
 
-const ScrollLayout = ({ current, children, onTransitionEnd}) => (
-  <div className='scroll-container'>
+const ScrollLayout = ({ current, children, onTransitionEnd, horizontal }) => (
+  <div className="scroll-container">
     <div
-      className="scroll-content"
+      className={`scroll-content ${horizontal ? 'horizontal' : 'vertical'}`}
       style={{
-        transform: `translateY(-${(100 * current) /
-          React.Children.count(children)}%)`
+        '--current': current,
+        '--count': React.Children.count(children)
       }}
       onTransitionEnd={onTransitionEnd}
     >
