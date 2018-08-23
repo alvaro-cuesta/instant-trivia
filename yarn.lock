@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@alvaro-cuesta/webpack-parts@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@alvaro-cuesta/webpack-parts/-/webpack-parts-0.4.0.tgz#7d966b8de678b1a93208b29c5ce8921247994d16"
+"@alvaro-cuesta/webpack-parts@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@alvaro-cuesta/webpack-parts/-/webpack-parts-0.5.0.tgz#e64c930456361b38d9db02a5046365861e18a406"
   dependencies:
     "@babel/core" "^7.0.0-beta.47"
     "@babel/plugin-proposal-class-properties" "^7.0.0-rc.2"
