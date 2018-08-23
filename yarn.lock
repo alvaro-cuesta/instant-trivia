@@ -842,9 +842,9 @@ ajv@^6.1.0:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-alvaro-cuesta-webpack-parts@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/alvaro-cuesta-webpack-parts/-/alvaro-cuesta-webpack-parts-0.3.0.tgz#c4e92ee48027b431a98a1d487fc73fef4d3f840e"
+alvaro-cuesta-webpack-parts@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/alvaro-cuesta-webpack-parts/-/alvaro-cuesta-webpack-parts-0.3.2.tgz#37cf722dedb8eba45c280f68c937381eae205e2a"
   dependencies:
     "@babel/core" "^7.0.0-beta.47"
     "@babel/plugin-proposal-class-properties" "^7.0.0-rc.2"
