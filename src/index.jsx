@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { hot } from "react-hot-loader";
 
 import "./index.css";
 
@@ -200,4 +201,6 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("container"));
+const HotApp = hot(module)(App);
+
+ReactDOM.render(<HotApp />, document.getElementById("container"));

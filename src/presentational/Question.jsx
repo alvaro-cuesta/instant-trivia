@@ -1,7 +1,7 @@
 import React from "react";
 import cx from "classnames";
 
-import "./Question.css";
+import classNames from "./Question.cssm";
 
 const Question = ({
   question,
@@ -10,17 +10,17 @@ const Question = ({
   selected,
   onAnswer
 }) => (
-  <div className="question-card">
-    <div className="question">{question}</div>
+  <div className={classNames.card}>
+    <div className={classNames.question}>{question}</div>
 
-    <div className="answers">
+    <div className={classNames.answers}>
       {answerOrder.map(i => (
         <button
           key={i}
-          className={cx("answer", {
-            selected: selected === i,
-            correct: selected !== undefined && i === 0,
-            incorrect: selected !== undefined && i !== 0
+          className={cx(classNames.answer, {
+            [classNames.selected]: selected === i,
+            [classNames.correct]: selected !== undefined && i === 0,
+            [classNames.incorrect]: selected !== undefined && i !== 0
           })}
           onClick={() => onAnswer(i)}
         >

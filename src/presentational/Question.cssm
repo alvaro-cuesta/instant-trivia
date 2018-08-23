@@ -1,4 +1,4 @@
-.question-card {
+.card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,7 +91,7 @@
 
 
 @media all and (min-aspect-ratio: 7/6) {
-  .question-card {
+  .card {
     width: calc(1.618 * 90vh);
     max-width: 90vw;
     height: 90vh;
@@ -110,7 +110,7 @@
 }
 
 @media all and (max-aspect-ratio: 7/6) {
-  .question-card {
+  .card {
     width: 90vw;
     height: calc(1.618 * 90vw);
     max-height: 90vh;

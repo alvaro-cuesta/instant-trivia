@@ -1,11 +1,11 @@
 import React from "react";
 
-import "./ScrollLayout.css";
+import classNames from "./ScrollLayout.cssm";
 
 const ScrollLayout = ({ current, children, onTransitionEnd, horizontal }) => (
-  <div className="scroll-container">
+  <div className={classNames.container}>
     <div
-      className={`scroll-content ${horizontal ? 'horizontal' : 'vertical'}`}
+      className={`${classNames.content} ${horizontal ? classNames.horizontal : classNames.vertical}`}
       style={{
         '--current': current,
         '--count': React.Children.count(children)
@@ -13,7 +13,7 @@ const ScrollLayout = ({ current, children, onTransitionEnd, horizontal }) => (
       onTransitionEnd={onTransitionEnd}
     >
       {React.Children.map(children, child => (
-        <div className="scroll-panel">{child}</div>
+        <div className={classNames.panel}>{child}</div>
       ))}
     </div>
   </div>
