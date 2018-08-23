@@ -16,9 +16,9 @@
   display: inline-block;
 
   background-color: #000000;
-  width: 2vw;
-  height: 2vw;
-  margin: 1vw;
+  width: 2vmin;
+  height: 2vmin;
+  margin: 1vmin;
 
   animation-name: pulse;
   animation-iteration-count: infinite;
