@@ -1,6 +1,6 @@
 {
   "name": "instant-trivia",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Instant Trivia game using Open Trivia DB",
   "scripts": {
     "build": "webpack --progress --profile --colors --bail",
