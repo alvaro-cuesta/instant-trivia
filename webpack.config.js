@@ -7,7 +7,7 @@ const paths = {
   output: path.join(__dirname, 'build'),
 };
 
-module.exports = require('alvaro-cuesta-webpack-parts').spa({
+module.exports = require('@alvaro-cuesta/webpack-parts').spa({
   name: 'Instant Trivia',
   paths,
   alias: {

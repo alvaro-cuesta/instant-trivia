@@ -2,6 +2,25 @@
 # yarn lockfile v1
 
 
+"@alvaro-cuesta/webpack-parts@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@alvaro-cuesta/webpack-parts/-/webpack-parts-0.4.0.tgz#7d966b8de678b1a93208b29c5ce8921247994d16"
+  dependencies:
+    "@babel/core" "^7.0.0-beta.47"
+    "@babel/plugin-proposal-class-properties" "^7.0.0-rc.2"
+    "@babel/plugin-transform-runtime" "^7.0.0-beta.47"
+    "@babel/preset-env" "^7.0.0-beta.47"
+    "@babel/preset-react" "^7.0.0-beta.47"
+    babel-loader "^8.0.0-beta.3"
+    clean-webpack-plugin "^0.1.19"
+    css-loader "^1.0.0"
+    html-webpack-plugin "^3.2.0"
+    mini-css-extract-plugin "^0.4.1"
+    node-sass "^4.9.3"
+    sass-loader "^7.1.0"
+    style-loader "^0.21.0"
+    webpack-merge "^4.1.3"
+
 "@babel/code-frame@7.0.0-rc.2":
   version "7.0.0-rc.2"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0-rc.2.tgz#12b6daeb408238360744649d16c0e9fa7ab3859e"
@@ -841,25 +860,6 @@ ajv@^6.1.0:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
-
-alvaro-cuesta-webpack-parts@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/alvaro-cuesta-webpack-parts/-/alvaro-cuesta-webpack-parts-0.3.2.tgz#37cf722dedb8eba45c280f68c937381eae205e2a"
-  dependencies:
-    "@babel/core" "^7.0.0-beta.47"
-    "@babel/plugin-proposal-class-properties" "^7.0.0-rc.2"
-    "@babel/plugin-transform-runtime" "^7.0.0-beta.47"
-    "@babel/preset-env" "^7.0.0-beta.47"
-    "@babel/preset-react" "^7.0.0-beta.47"
-    babel-loader "^8.0.0-beta.3"
-    clean-webpack-plugin "^0.1.19"
-    css-loader "^1.0.0"
-    html-webpack-plugin "^3.2.0"
-    mini-css-extract-plugin "^0.4.1"
-    node-sass "^4.9.3"
-    sass-loader "^7.1.0"
-    style-loader "^0.21.0"
-    webpack-merge "^4.1.3"
 
 amdefine@>=0.0.4:
   version "1.0.1"
