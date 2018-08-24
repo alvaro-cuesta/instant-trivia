@@ -20,6 +20,12 @@ yarn build
 
 - See [open tasks](TODO.md)
 
+## Publishing
+
+1. `yarn version --(major | minor | patch)`
+2. `yarn deploy`
+3. `git push && git push --tags`
+
 ## Open Trivia DB License
 
 All data provided by the API is available under the [Creative Commons Attribution-ShareAlike 4.0
