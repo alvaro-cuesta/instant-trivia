@@ -7,7 +7,6 @@
     "build": "webpack --progress --profile --colors --bail",
     "build:gh-pages": "webpack --progress --profile --colors --bail",
     "dev": "webpack-serve --config webpack.config.js",
-    "watch": "webpack -w --progress --profile --colors",
     "preversion": "yarn build",
     "deploy": "yarn deploy:gh-pages",
     "predeploy:gh-pages": "yarn build:gh-pages",
@@ -32,7 +31,7 @@
   },
   "license": "ISC",
   "devDependencies": {
-    "@alvaro-cuesta/webpack-parts": "^0.6.1",
+    "@alvaro-cuesta/webpack-parts": "^0.7.0",
     "react-hot-loader": "^4.2.0",
     "webpack": "^4.16.0",
     "webpack-cli": "^3.0.8",
