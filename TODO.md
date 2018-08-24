@@ -7,6 +7,8 @@
 
 ## Features
 
+- Favicon
+
 ## Meta
 
 - Move visual syles out of CSS module
