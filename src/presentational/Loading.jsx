@@ -8,6 +8,6 @@ const Loading = () => (
     <div className={className.square} />
     <div className={className.square} />
   </div>
-)
+);
 
 export default Loading

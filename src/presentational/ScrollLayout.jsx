@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import classNames from "./ScrollLayout.cssm";
 
@@ -13,10 +14,22 @@ const ScrollLayout = ({ current, children, onTransitionEnd, horizontal }) => (
       onTransitionEnd={onTransitionEnd}
     >
       {React.Children.map(children, child => (
-        <div className={classNames.panel}>{child}</div>
+        <div className={styles.panel}>{child}</div>
       ))}
     </div>
   </div>
 );
+
+ScrollLayout.propTypes = {
+  current: PropTypes.number,
+  children: PropTypes.node,
+  onTransitionEnd: PropTypes.func,
+  horizontal: PropTypes.bool,
+};
+
+ScrollLayout.defaultProps = {
+  current: 0,
+  horizontal: false,
+}
 
 export default ScrollLayout;

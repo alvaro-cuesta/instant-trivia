@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import cx from "classnames";
 
 import classNames from "./Question.cssm";
@@ -8,7 +9,7 @@ const Question = ({
   answers,
   answerOrder,
   selected,
-  onAnswer
+  onAnswer,
 }) => (
   <div className={classNames.card}>
     <div className={classNames.question}>{question}</div>
@@ -30,5 +31,13 @@ const Question = ({
     </div>
   </div>
 );
+
+Question.propTypes = {
+  question: PropTypes.string.isRequired,
+  answers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  answerOrder: PropTypes.arrayOf(PropTypes.number).isRequired,
+  selected: PropTypes.number,
+  onAnswer: PropTypes.func.isRequired,
+};
 
 export default Question;

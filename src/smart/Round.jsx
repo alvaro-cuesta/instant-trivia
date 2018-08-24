@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-import Question from "../presentational/Question.jsx";
-import ScrollLayout from "../presentational/ScrollLayout.jsx";
+import Question from "presentational/Question";
+import ScrollLayout from "presentational/ScrollLayout";
 
 class Round extends React.Component {
   state = {
@@ -58,5 +59,14 @@ class Round extends React.Component {
     );
   }
 }
+
+Round.propTypes = {
+  questions: PropTypes.arrayOf(PropTypes.shape({
+    question: PropTypes.string,
+    correct_answer: PropTypes.string,
+    incorrect_answers: PropTypes.arrayOf(PropTypes.string),
+    answerOrder: PropTypes.arrayOf(PropTypes.number),
+  })).isRequired
+};
 
 export default Round;
