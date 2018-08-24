@@ -105,8 +105,9 @@ class App extends React.Component {
   };
 
   shouldShowPhase = (phase) => {
-    const { fromPhase, phase: currentPhase } =
-      fromPhase === phase || currentPhase === phase
+    const { fromPhase, phase: currentPhase } = this.state
+
+    return fromPhase === phase || currentPhase === phase
   }
 
   render() {
