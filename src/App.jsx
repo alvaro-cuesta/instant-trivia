@@ -173,7 +173,7 @@ class App extends React.Component {
                 <select value={customType} onChange={this.handleCustomType}>
                   <option value="">Any</option>
                   <option value="multiple">Multiple Choice</option>
-                  <option value="boolean">True / Fasle</option>
+                  <option value="boolean">True / False</option>
                 </select>
               </label>
             </div>
