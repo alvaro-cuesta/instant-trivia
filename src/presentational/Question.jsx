@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
 
-import classNames from "./Question.cssm";
+import styles from "./Question.cssm";
 
 const Question = ({
   question,
@@ -11,17 +11,17 @@ const Question = ({
   selected,
   onAnswer,
 }) => (
-  <div className={classNames.card}>
-    <div className={classNames.question}>{question}</div>
+  <div className={styles.card}>
+    <div className={styles.question}>{question}</div>
 
-    <div className={classNames.answers}>
+    <div className={styles.answers}>
       {answerOrder.map(i => (
         <button
           key={i}
-          className={cx(classNames.answer, {
-            [classNames.selected]: selected === i,
-            [classNames.correct]: selected !== undefined && i === 0,
-            [classNames.incorrect]: selected !== undefined && i !== 0
+          className={cx(styles.answer, {
+            [styles.selected]: selected === i,
+            [styles.correct]: selected !== undefined && i === 0,
+            [styles.incorrect]: selected !== undefined && i !== 0
           })}
           onClick={() => onAnswer(i)}
         >

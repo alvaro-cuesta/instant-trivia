@@ -1,12 +1,12 @@
 import React from "react";
 
-import className from "./Loading.cssm";
+import styles from "./Loading.cssm";
 
 const Loading = () => (
   <div>
-    <div className={className.square} />
-    <div className={className.square} />
-    <div className={className.square} />
+    <div className={styles.square} />
+    <div className={styles.square} />
+    <div className={styles.square} />
   </div>
 );
 
