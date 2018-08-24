@@ -104,6 +104,11 @@ class App extends React.Component {
     }
   };
 
+  shouldShowPhase = (phase) => {
+    const { fromPhase, phase: currentPhase } =
+      fromPhase === phase || currentPhase === phase
+  }
+
   render() {
     const {
       fromPhase,
@@ -121,7 +126,7 @@ class App extends React.Component {
         horizontal={true}
         onTransitionEnd={this.handleTransitionEnd}
       >
-        {(fromPhase === "LANDING" || phase === "LANDING") && (
+        {this.shouldShowPhase("LANDING") && (
           <div>
             <h1>Instant Trivia</h1>
             <button onClick={this.handleQuickGame}>Quick Game</button>
@@ -129,7 +134,7 @@ class App extends React.Component {
           </div>
         )}
 
-        {(fromPhase === "CUSTOM" || phase === "CUSTOM") && (
+        {this.shouldShowPhase("CUSTOM") && (
           <div>
             <h1>Custom Game</h1>
 
@@ -179,16 +184,16 @@ class App extends React.Component {
           </div>
         )}
 
-        {(fromPhase === "LOADING" || phase === "LOADING") && <Loading />}
+        {this.shouldShowPhase("LOADING") && <Loading />}
 
-        {(fromPhase === "ERROR" || phase === "ERROR") && (
+        {this.shouldShowPhase("ERROR") && (
           <InternalError
             error={error}
             onBack={() => this.transition("LANDING")}
           />
         )}
 
-        {(fromPhase === "ROUND" || phase === "ROUND") && (
+        {this.shouldShowPhase("ROUND") && (
           <Round
             questions={questions}
             onFinish={() => this.transition("LANDING")}
