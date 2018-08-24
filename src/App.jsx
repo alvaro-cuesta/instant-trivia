@@ -63,7 +63,7 @@ class App extends React.Component {
   };
 
   handleResponse = ({ response, questions }) => {
-    console.log(response, questions);
+    console.debug(response, questions);
 
     if (response !== "OK") {
       this.transition("ERROR", { error: `Unhandled response ${response}` });
