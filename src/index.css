@@ -10,7 +10,27 @@ body {
 }
 
 #container {
-    background-color: #ffd24c;
-    font-family: Times, Times New Roman, Georgia, serif;
-    font-size: 3.5vmin;
+  background-color: #ffd24c;
+  font-size: 3.5vmin;
+
+  --primary-color: #444039;
+  --highlight-color: #a59258;
+  --active-color: #444039;
+}
+
+#container, #container button {
+  color: #444039;
+  font-family: Times, Times New Roman, Georgia, serif;
+}
+
+a {
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--highlight-color);
+}
+
+a:active {
+  color: var(--active-color);
 }

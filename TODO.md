@@ -11,7 +11,7 @@
 
 ## Meta
 
-- Move visual syles out of CSS module
+- Move visual styles out of CSS module
 
 ## Roadmap
 
@@ -20,7 +20,6 @@
 - Style landing page
 - Style custom options
 - Open Trivia DB license notice
-- GitHub link
 
 ### 2.x
 

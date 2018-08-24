@@ -1,4 +1,6 @@
 import React from 'react';
+import SVGInline from "react-svg-inline";
+import githubIcon from "!raw-loader!simple-icons/icons/github.svg";
 
 import "./index.css";
 
@@ -8,6 +10,8 @@ import Loading from "presentational/Loading";
 import Round from "smart/Round";
 
 import fetchQuestions from "./fetchQuestions";
+
+import styles from "./App.cssm";
 
 class App extends React.Component {
   static PHASE_TO_CURRENT = {
@@ -122,85 +126,96 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <ScrollLayout
-        current={App.PHASE_TO_CURRENT[phase]}
-        horizontal={true}
-        onTransitionEnd={this.handleTransitionEnd}
-      >
-        {this.shouldShowPhase("LANDING") && (
-          <div>
-            <h1>Instant Trivia</h1>
-            <button onClick={this.handleQuickGame}>Quick Game</button>
-            <button onClick={() => this.transition("CUSTOM")}>Custom</button>
-          </div>
-        )}
-
-        {this.shouldShowPhase("CUSTOM") && (
-          <div>
-            <h1>Custom Game</h1>
-
+      <React.Fragment>
+        <ScrollLayout
+          current={App.PHASE_TO_CURRENT[phase]}
+          horizontal={true}
+          onTransitionEnd={this.handleTransitionEnd}
+        >
+          {this.shouldShowPhase("LANDING") && (
             <div>
-              <label>
-                Questions:
-                <input
-                  type="number"
-                  min={0}
-                  step={1}
-                  value={customLength}
-                  onChange={this.handleCustomLength}
-                />
-              </label>
+              <h1>Instant Trivia</h1>
+              <button onClick={this.handleQuickGame}>Quick Game</button>
+              <button onClick={() => this.transition("CUSTOM")}>Custom</button>
             </div>
+          )}
 
+          {this.shouldShowPhase("CUSTOM") && (
             <div>
-              <label>
-                Difficulty:
-                <select
-                  value={customDifficulty}
-                  onChange={this.handleCustomDifficulty}
-                >
-                  <option value="">Any</option>
-                  <option value="easy">Easy</option>
-                  <option value="medium">Medium</option>
-                  <option value="hard">Hard</option>
-                </select>
-              </label>
+              <h1>Custom Game</h1>
+
+              <div>
+                <label>
+                  Questions:
+                  <input
+                    type="number"
+                    min={0}
+                    step={1}
+                    value={customLength}
+                    onChange={this.handleCustomLength}
+                  />
+                </label>
+              </div>
+
+              <div>
+                <label>
+                  Difficulty:
+                  <select
+                    value={customDifficulty}
+                    onChange={this.handleCustomDifficulty}
+                  >
+                    <option value="">Any</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                  </select>
+                </label>
+              </div>
+
+              <div>
+                <label>
+                  Type:
+                  <select value={customType} onChange={this.handleCustomType}>
+                    <option value="">Any</option>
+                    <option value="multiple">Multiple Choice</option>
+                    <option value="boolean">True / False</option>
+                  </select>
+                </label>
+              </div>
+
+              <div>
+                <button onClick={this.handleStartCustom}>Start</button>
+                <button onClick={() => this.transition("LANDING")}>Back</button>
+              </div>
             </div>
+          )}
 
-            <div>
-              <label>
-                Type:
-                <select value={customType} onChange={this.handleCustomType}>
-                  <option value="">Any</option>
-                  <option value="multiple">Multiple Choice</option>
-                  <option value="boolean">True / False</option>
-                </select>
-              </label>
-            </div>
+          {this.shouldShowPhase("LOADING") && <Loading />}
 
-            <div>
-              <button onClick={this.handleStartCustom}>Start</button>
-              <button onClick={() => this.transition("LANDING")}>Back</button>
-            </div>
-          </div>
-        )}
+          {this.shouldShowPhase("ERROR") && (
+            <InternalError
+              error={error}
+              onBack={() => this.transition("LANDING")}
+            />
+          )}
 
-        {this.shouldShowPhase("LOADING") && <Loading />}
+          {this.shouldShowPhase("ROUND") && (
+            <Round
+              questions={questions}
+              onFinish={() => this.transition("LANDING")}
+            />
+          )}
+        </ScrollLayout>
 
-        {this.shouldShowPhase("ERROR") && (
-          <InternalError
-            error={error}
-            onBack={() => this.transition("LANDING")}
-          />
-        )}
-
-        {this.shouldShowPhase("ROUND") && (
-          <Round
-            questions={questions}
-            onFinish={() => this.transition("LANDING")}
-          />
-        )}
-      </ScrollLayout>
+        <div className={styles.overlay}>
+            <a
+              className={styles.githubIcon}
+              href="https://www.github.com/alvaro-cuesta/instant-trivia/"
+            >
+              <SVGInline svg={githubIcon} />
+            </a>
+        </div>
+      </React.Fragment>
     );
   }
 }

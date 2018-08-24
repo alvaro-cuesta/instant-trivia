@@ -48,9 +48,7 @@
 
   border: 2px solid #eceff1;
 
-  font-family: Times, Times New Roman, Georgia, serif;
-
-    transition: background-color 0.05s ease-out;
+  transition: background-color 0.05s ease-out;
 }
 
 .answer:not(.correct):not(.incorrect):hover {
