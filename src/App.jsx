@@ -263,7 +263,7 @@ class App extends React.Component {
                 >
                   <SVGInline svg={arrowLeftIcon} />
                 </a>
-                Custom Game
+                Custom game
               </h1>
 
               <div className={styles.formFields}>
