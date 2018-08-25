@@ -375,7 +375,11 @@ class App extends React.Component {
 
           <div />
 
-          <a href={"https://www.github.com/alvaro-cuesta/instant-trivia/"} title="GitHub repository">
+          <a
+            href={"https://www.github.com/alvaro-cuesta/instant-trivia/"}
+            target="_blank"
+            title="GitHub repository"
+          >
             <SVGInline className={styles.overlayButton} svg={githubIcon} />
           </a>
         </div>
