@@ -9,10 +9,10 @@ import githubIcon from "!raw-loader!icons/github.svg";
 
 import "./index.css";
 
-import ScrollLayout from "presentational/ScrollLayout";
-import InternalError from "presentational/InternalError";
-import Loading from "presentational/Loading";
-import Round from "smart/Round";
+import ScrollLayout from "components/ScrollLayout";
+import InternalError from "components/InternalError";
+import Loading from "components/Loading";
+import Round from "components/Round";
 
 import fetchQuestions from "./fetchQuestions";
 

@@ -12,8 +12,7 @@ module.exports = require('@alvaro-cuesta/webpack-parts')
     name: 'Instant Trivia',
     paths,
     alias: {
-      presentational: path.join(paths.app, 'presentational'),
-      smart: path.join(paths.app, 'smart'),
+      components: path.join(paths.app, 'components'),
       icons: path.join(paths.app, 'icons'),
     },
   });

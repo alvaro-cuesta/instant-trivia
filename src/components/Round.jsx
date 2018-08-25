@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import SVGInline from "react-svg-inline";
 import arrowLeftIcon from "!raw-loader!icons/arrow-left.svg";
 
-import Question from "presentational/Question";
-import ScrollLayout from "presentational/ScrollLayout";
+import Question from "components/Question";
+import ScrollLayout from "components/ScrollLayout";
 
 import styles from "../App.cssm";
 
