@@ -7,6 +7,17 @@
   height: 100vh;
 
   pointer-events: none;
+
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  align-content: space-between;
+  align-items: end;
+  justify-items: end;
+}
+
+.overlay > * {
+  margin: 0.5em;
 }
 
 .overlay > * {
@@ -38,13 +49,5 @@
 }
 
 .github-link:global(.SVGInline) > :global(.SVGInline-svg) {
-  display: block;
-
-  position: absolute;
-  bottom: 0;
-  right: 0;
-
-  width: 2.3em;
-  height: 2.3em;
-  margin: 0.5em;
+  font-size: 230%;
 }

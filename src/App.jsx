@@ -257,6 +257,12 @@ class App extends React.Component {
         </ScrollLayout>
 
         <div className={styles.overlay}>
+          <div />
+
+          <div />
+
+          <div />
+
           <a href={"https://www.github.com/alvaro-cuesta/instant-trivia/"}>
             <SVGInline className={styles.githubLink} svg={githubIcon} />
           </a>
