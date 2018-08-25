@@ -30,6 +30,7 @@ class Round extends React.Component {
             answerOrder={question.answerOrder}
             selected={answers[i]}
             onAnswer={makeHandleAnswer !== undefined ? makeHandleAnswer(i) : undefined}
+            isViewing={i === viewingQuestion}
           />
         ))}
 
@@ -43,6 +44,7 @@ class Round extends React.Component {
               className={styles.backArrow}
               href="#"
               onClick={this.handleFinish}
+              tabindex={ viewingQuestion === questions.length ? 1 : -1 }
             >
               <SVGInline svg={arrowLeftIcon} />
               Finish

@@ -10,22 +10,24 @@ const Question = ({
   answerOrder,
   selected,
   onAnswer,
+  isViewing,
 }) => (
   <div className={styles.card}>
     <div className={styles.question}>{question}</div>
 
     <div className={styles.answers}>
-      {answerOrder.map(i => (
+      {answerOrder.map((answerIndex, buttonIndex) => (
         <button
-          key={i}
+          key={buttonIndex}
           className={cx(styles.answer, {
-            [styles.selected]: selected === i,
-            [styles.correct]: selected !== undefined && i === 0,
-            [styles.incorrect]: selected !== undefined && i !== 0
+            [styles.selected]: selected === answerIndex,
+            [styles.correct]: selected !== undefined && answerIndex === 0,
+            [styles.incorrect]: selected !== undefined && answerIndex !== 0
           })}
-          onClick={() => onAnswer(i)}
+          onClick={() => onAnswer(answerIndex)}
+          tabindex={isViewing ? buttonIndex + 1 : -1}
         >
-          {answers[i]}
+          {answers[answerIndex]}
         </button>
       ))}
     </div>
@@ -38,6 +40,7 @@ Question.propTypes = {
   answerOrder: PropTypes.arrayOf(PropTypes.number).isRequired,
   selected: PropTypes.number,
   onAnswer: PropTypes.func.isRequired,
+  isViewing: PropTypes.bool,
 };
 
 export default Question;

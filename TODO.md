@@ -2,7 +2,6 @@
 
 ## Bugs
 
-- Can tab across questions (should probably limit to current question)
 - With `overflow: hidden` card bleed into each other
 
 ## Features
