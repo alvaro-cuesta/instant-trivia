@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  user-select: none;
 }
 
 html,
@@ -53,4 +54,6 @@ input, select {
   background-color: #fff9e0;
   border: 1px solid var(--text-color);
   border-radius: 2px;
+
+  user-select: initial; /* iOS needs this */
 }
