@@ -338,11 +338,17 @@ class App extends React.Component {
             phase === "ROUND" && roundFinished
             ? (
                 <div className={styles.navigateAnswers}>
-                  <a href="#" onClick={this.handlePreviousQuestion}>
+                  <a
+                    href={ viewingQuestion > 0 ? "#" : undefined }
+                    onClick={this.handlePreviousQuestion}
+                  >
                     <SVGInline className={styles.overlayButton} svg={arrowUpIcon} />
                   </a>
 
-                  <a href="#" onClick={this.handleNextQuestion}>
+                  <a
+                    href={ viewingQuestion < questions.length ? "#" : undefined }
+                    onClick={this.handleNextQuestion}
+                  >
                     <SVGInline className={styles.overlayButton} svg={arrowDownIcon} />
                   </a>
                 </div>

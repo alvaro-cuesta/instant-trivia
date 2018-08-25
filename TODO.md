@@ -9,7 +9,6 @@
 
 - Favicon
 - Arrow link titles
-- Disabled state for icon links (e.g. when no prev question)
 - Animation when arrows appear/disappear
 
 ## Meta

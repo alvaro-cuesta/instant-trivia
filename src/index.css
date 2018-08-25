@@ -11,6 +11,7 @@ body {
   --primary-color: #7b6237;
   --highlight-color: #a59258;
   --active-color: #7b6237;
+  --disabled-color: #e6c156/*c5b380*/;
 
   background-color: #ffd24c;
 }
@@ -29,11 +30,15 @@ a {
   color: var(--primary-color);
 }
 
-a:hover {
+a:not([href]) {
+  color: var(--disabled-color);
+}
+
+a[href]:hover {
   color: var(--highlight-color);
 }
 
-a:active {
+a[href]:active {
   color: var(--active-color);
 }
 
