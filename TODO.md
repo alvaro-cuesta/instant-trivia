@@ -8,7 +8,6 @@
 ## Features
 
 - Favicon
-- Arrow link titles
 - Animation when arrows appear/disappear
 
 ## Meta

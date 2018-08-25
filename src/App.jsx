@@ -236,7 +236,7 @@ class App extends React.Component {
             <div className={styles.offCenter}>
               <h1>
                 Instant Trivia
-                <a href="#" onClick={this.handleQuickGame}>
+                <a href="#" onClick={this.handleQuickGame} title="Quick game">
                   <SVGInline svg={arrowRightIcon} />
                 </a>
               </h1>
@@ -254,6 +254,7 @@ class App extends React.Component {
                   className={styles.backArrow}
                   href="#"
                   onClick={this.handleBackFromCustom}
+                  title="Back"
                 >
                   <SVGInline svg={arrowLeftIcon} />
                 </a>
@@ -336,7 +337,7 @@ class App extends React.Component {
           {
             phase !== "LANDING" && phase !== "CUSTOM"
             ? (
-                <a href="#" onClick={this.handleBackFromRound}>
+                <a href="#" onClick={this.handleBackFromRound} title="Back">
                   <SVGInline className={styles.overlayButton} svg={arrowLeftIcon} />
                 </a>
               )
@@ -350,6 +351,7 @@ class App extends React.Component {
                   <a
                     href={ viewingQuestion > 0 ? "#" : undefined }
                     onClick={this.handlePreviousQuestion}
+                    title="Previous question"
                   >
                     <SVGInline className={styles.overlayButton} svg={arrowUpIcon} />
                   </a>
@@ -357,6 +359,7 @@ class App extends React.Component {
                   <a
                     href={ viewingQuestion < questions.length ? "#" : undefined }
                     onClick={this.handleNextQuestion}
+                    title="Next question"
                   >
                     <SVGInline className={styles.overlayButton} svg={arrowDownIcon} />
                   </a>
@@ -367,7 +370,7 @@ class App extends React.Component {
 
           <div />
 
-          <a href={"https://www.github.com/alvaro-cuesta/instant-trivia/"}>
+          <a href={"https://www.github.com/alvaro-cuesta/instant-trivia/"} title="GitHub repository">
             <SVGInline className={styles.overlayButton} svg={githubIcon} />
           </a>
         </div>
