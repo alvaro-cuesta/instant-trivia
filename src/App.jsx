@@ -1,8 +1,10 @@
 import React from 'react';
 import { hot } from "react-hot-loader";
 import SVGInline from "react-svg-inline";
-import arrowLeftIcon from "!raw-loader!icons/arrow-left.svg";
+import arrowUpIcon from "!raw-loader!icons/arrow-up.svg";
 import arrowRightIcon from "!raw-loader!icons/arrow-right.svg";
+import arrowDownIcon from "!raw-loader!icons/arrow-down.svg";
+import arrowLeftIcon from "!raw-loader!icons/arrow-left.svg";
 import githubIcon from "!raw-loader!icons/github.svg";
 
 import "./index.css";
@@ -35,7 +37,10 @@ class App extends React.Component {
       customDifficulty: undefined,
       customType: undefined,
       questions: null,
-      error: null
+      answers: null,
+      viewingQuestion: null,
+      roundFinished: null,
+      error: null,
     };
 
     this.lengthInputId = Math.random().toString();
@@ -101,13 +106,57 @@ class App extends React.Component {
       return;
     }
 
-    this.transition("ROUND", { questions });
+    this.transition("ROUND", {
+      questions,
+      answers: [],
+      viewingQuestion: 0,
+      roundFinished: false,
+    });
   };
 
   handleError = error => {
     console.error(error);
     this.transition("ERROR", { error: error.message });
   };
+
+  makeHandleAnswer = (question) => (answer) => {
+    const { questions, answers, viewingQuestion } = this.state;
+
+    if (answers[question] !== undefined) {
+      return;
+    }
+
+    this.setState(
+      ({ answers }) => {
+        answers[question] = answer;
+        return { answers };
+      },
+      () => {
+        setTimeout(() => {
+          this.setState({
+            viewingQuestion: question + 1,
+            roundFinished: question === questions.length - 1,
+          });
+        }, 2000);
+      }
+    );
+  };
+
+  handlePreviousQuestion = (e) => {
+    e.preventDefault();
+
+    this.setState(({ viewingQuestion }) => ({
+      viewingQuestion: Math.max(0, viewingQuestion - 1),
+    }));
+  }
+
+  handleNextQuestion = (e) => {
+    e.preventDefault();
+
+    this.setState(({ questions, viewingQuestion }) => ({
+      viewingQuestion: Math.min(questions.length, viewingQuestion + 1),
+    }));
+  }
 
   handleBackFromRound = (e) => {
     if (e) {
@@ -132,7 +181,12 @@ class App extends React.Component {
 
     switch (fromPhase) {
       case "ROUND": {
-        this.setState({ questions: null });
+        this.setState({
+          questions: null,
+          answers: null,
+          viewingQuestion: null,
+          roundFinished: null,
+        });
       }
 
       case "ERROR": {
@@ -154,6 +208,9 @@ class App extends React.Component {
       fromPhase,
       phase,
       questions,
+      answers,
+      viewingQuestion,
+      roundFinished,
       error,
       customLength,
       customDifficulty,
@@ -192,7 +249,6 @@ class App extends React.Component {
                 >
                   <SVGInline svg={arrowLeftIcon} />
                 </a>
-
                 Custom Game
               </h1>
 
@@ -259,6 +315,9 @@ class App extends React.Component {
           {this.shouldShowPhase("ROUND") && (
             <Round
               questions={questions}
+              answers={answers}
+              viewingQuestion={viewingQuestion}
+              makeHandleAnswer={this.makeHandleAnswer}
               onFinish={this.handleBackFromRound}
             />
           )}
@@ -275,7 +334,21 @@ class App extends React.Component {
             : <div />
           }
 
-          <div />
+          {
+            phase === "ROUND" && roundFinished
+            ? (
+                <div className={styles.navigateAnswers}>
+                  <a href="#" onClick={this.handlePreviousQuestion}>
+                    <SVGInline className={styles.overlayButton} svg={arrowUpIcon} />
+                  </a>
+
+                  <a href="#" onClick={this.handleNextQuestion}>
+                    <SVGInline className={styles.overlayButton} svg={arrowDownIcon} />
+                  </a>
+                </div>
+              )
+            : <div />
+          }
 
           <div />
 

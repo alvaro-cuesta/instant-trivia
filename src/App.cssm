@@ -12,8 +12,6 @@
   grid-template-columns: auto auto;
   justify-content: space-between;
   align-content: space-between;
-  align-items: end;
-  justify-items: end;
 }
 
 .overlay > * {
@@ -51,3 +49,9 @@
 .overlay-button:global(.SVGInline) > :global(.SVGInline-svg) {
   font-size: 230%;
 }
+
+.navigate-answers {
+  display: flex;
+  flex-direction: column;
+}
+

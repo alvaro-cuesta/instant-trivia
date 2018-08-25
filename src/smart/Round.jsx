@@ -9,32 +9,6 @@ import ScrollLayout from "presentational/ScrollLayout";
 import styles from "../App.cssm";
 
 class Round extends React.Component {
-  state = {
-    answers: [],
-    current: 0
-  };
-
-  makeHandleAnswer = question => answer => {
-    const { questions } = this.props;
-    const { answers } = this.state;
-
-    if (answers[question] !== undefined) {
-      return;
-    }
-
-    this.setState(
-      ({ answers }) => {
-        answers[question] = answer;
-        return { answers };
-      },
-      () => {
-        setTimeout(() => {
-          this.setState({ current: question + 1 });
-        }, 2000);
-      }
-    );
-  };
-
   handleFinish = (e) => {
     e.preventDefault();
 
@@ -44,11 +18,10 @@ class Round extends React.Component {
   }
 
   render() {
-    const { questions, onFinish } = this.props;
-    const { answers, current } = this.state;
+    const { questions, answers, viewingQuestion, makeHandleAnswer, onFinish } = this.props;
 
     return (
-      <ScrollLayout current={current}>
+      <ScrollLayout current={viewingQuestion}>
         {questions.map((question, i) => (
           <Question
             key={i}
@@ -56,7 +29,7 @@ class Round extends React.Component {
             answers={[question.correct_answer, ...question.incorrect_answers]}
             answerOrder={question.answerOrder}
             selected={answers[i]}
-            onAnswer={this.makeHandleAnswer(i)}
+            onAnswer={makeHandleAnswer !== undefined ? makeHandleAnswer(i) : undefined}
           />
         ))}
 
@@ -88,6 +61,9 @@ Round.propTypes = {
     incorrect_answers: PropTypes.arrayOf(PropTypes.string),
     answerOrder: PropTypes.arrayOf(PropTypes.number),
   })).isRequired,
+  answers: PropTypes.arrayOf(PropTypes.number),
+  viewingQuestion: PropTypes.number,
+  makeHandleAnswer: PropTypes.func,
   onFinish: PropTypes.func,
 };
 
