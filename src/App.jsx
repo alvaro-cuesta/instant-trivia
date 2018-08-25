@@ -109,6 +109,14 @@ class App extends React.Component {
     this.transition("ERROR", { error: error.message });
   };
 
+  handleBackFromRound = (e) => {
+    if (e) {
+      e.preventDefault();
+    }
+
+    this.transition("LANDING");
+  }
+
   transition = (phase, extraState) => {
     this.setState(state => ({
       fromPhase: state.phase,
@@ -251,20 +259,28 @@ class App extends React.Component {
           {this.shouldShowPhase("ROUND") && (
             <Round
               questions={questions}
-              onFinish={() => this.transition("LANDING")}
+              onFinish={this.handleBackFromRound}
             />
           )}
         </ScrollLayout>
 
         <div className={styles.overlay}>
-          <div />
+          {
+            phase !== "LANDING" && phase !== "CUSTOM"
+            ? (
+                <a href="#" onClick={this.handleBackFromRound}>
+                  <SVGInline className={styles.overlayButton} svg={arrowLeftIcon} />
+                </a>
+              )
+            : <div />
+          }
 
           <div />
 
           <div />
 
           <a href={"https://www.github.com/alvaro-cuesta/instant-trivia/"}>
-            <SVGInline className={styles.githubLink} svg={githubIcon} />
+            <SVGInline className={styles.overlayButton} svg={githubIcon} />
           </a>
         </div>
       </React.Fragment>

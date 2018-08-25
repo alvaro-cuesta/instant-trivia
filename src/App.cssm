@@ -48,6 +48,6 @@
   line-height: 1em;
 }
 
-.github-link:global(.SVGInline) > :global(.SVGInline-svg) {
+.overlay-button:global(.SVGInline) > :global(.SVGInline-svg) {
   font-size: 230%;
 }
