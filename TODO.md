@@ -20,6 +20,9 @@
 - Animation when arrows appear/disappear
 - Style custom options
 - Open Trivia DB license notice
+- Disable delayed transitions when transitioning manually
+  - E.g. if we go back from loading, do not continue to game (in this case we might even want to
+    cancel request).
 
 ### 2.x
 
