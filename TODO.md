@@ -2,8 +2,6 @@
 
 ## Bugs
 
-- With `overflow: hidden` card bleed into each other
-
 ## Features
 
 - Favicon
