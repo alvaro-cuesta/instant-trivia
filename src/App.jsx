@@ -183,6 +183,11 @@ class App extends React.Component {
   };
 
   handleTransitionEnd = e => {
+    // Do not react to children transitions
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+
     const { fromPhase } = this.state;
 
     this.setState({ fromPhase: null });
