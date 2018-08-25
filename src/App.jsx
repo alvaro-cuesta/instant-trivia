@@ -1,4 +1,5 @@
 import React from 'react';
+import { hot } from "react-hot-loader";
 import SVGInline from "react-svg-inline";
 import githubIcon from "!raw-loader!simple-icons/icons/github.svg";
 
@@ -208,16 +209,13 @@ class App extends React.Component {
         </ScrollLayout>
 
         <div className={styles.overlay}>
-            <a
-              className={styles.githubIcon}
-              href="https://www.github.com/alvaro-cuesta/instant-trivia/"
-            >
-              <SVGInline svg={githubIcon} />
-            </a>
+          <a href={"https://www.github.com/alvaro-cuesta/instant-trivia/"}>
+            <SVGInline className={styles.githubLink} svg={githubIcon} />
+          </a>
         </div>
       </React.Fragment>
     );
   }
 }
 
-export default App;
+export default hot(module)(App);
