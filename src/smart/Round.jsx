@@ -1,8 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import SVGInline from "react-svg-inline";
+import arrowLeftIcon from "!raw-loader!icons/arrow-left.svg";
 
 import Question from "presentational/Question";
 import ScrollLayout from "presentational/ScrollLayout";
+
+import styles from "../App.cssm";
 
 class Round extends React.Component {
   state = {
@@ -31,6 +35,14 @@ class Round extends React.Component {
     );
   };
 
+  handleFinish = (e) => {
+    e.preventDefault();
+
+    if (this.props.onFinish) {
+      this.props.onFinish();
+    }
+  }
+
   render() {
     const { questions, onFinish } = this.props;
     const { answers, current } = this.state;
@@ -53,7 +65,16 @@ class Round extends React.Component {
 
           <p>TODO</p>
 
-          <button onClick={onFinish}>Finish</button>
+          <div className={styles.backArrowContainer}>
+            <a
+              className={styles.backArrow}
+              href="#"
+              onClick={this.handleFinish}
+            >
+              <SVGInline svg={arrowLeftIcon} />
+              Finish
+            </a>
+          </div>
         </div>
       </ScrollLayout>
     );
@@ -66,7 +87,8 @@ Round.propTypes = {
     correct_answer: PropTypes.string,
     incorrect_answers: PropTypes.arrayOf(PropTypes.string),
     answerOrder: PropTypes.arrayOf(PropTypes.number),
-  })).isRequired
+  })).isRequired,
+  onFinish: PropTypes.func,
 };
 
 export default Round;

@@ -1,7 +1,9 @@
 import React from 'react';
 import { hot } from "react-hot-loader";
 import SVGInline from "react-svg-inline";
-import githubIcon from "!raw-loader!simple-icons/icons/github.svg";
+import arrowLeftIcon from "!raw-loader!icons/arrow-left.svg";
+import arrowRightIcon from "!raw-loader!icons/arrow-right.svg";
+import githubIcon from "!raw-loader!icons/github.svg";
 
 import "./index.css";
 
@@ -33,7 +35,9 @@ class App extends React.Component {
     error: null
   };
 
-  handleQuickGame = () => {
+  handleQuickGame = (e) => {
+    e.preventDefault();
+
     this.transition("LOADING");
 
     fetchQuestions({ amount: 10 })
@@ -41,7 +45,15 @@ class App extends React.Component {
       .catch(this.handleError);
   };
 
-  handleStartCustom = () => {
+  handleGoToCustom = (e) => {
+    e.preventDefault();
+
+    this.transition("CUSTOM");
+  };
+
+  handleStartCustom = (e) => {
+    e.preventDefault();
+
     const { customLength, customDifficulty, customType } = this.state;
 
     this.transition("LOADING");
@@ -54,6 +66,12 @@ class App extends React.Component {
       .then(this.handleResponse)
       .catch(this.handleError);
   };
+
+  handleBackFromCustom = (e) => {
+    e.preventDefault();
+
+    this.transition("LANDING");
+  }
 
   handleCustomLength = ({ target: { value } }) => {
     this.setState({ customLength: parseInt(value, 10) });
@@ -135,15 +153,31 @@ class App extends React.Component {
         >
           {this.shouldShowPhase("LANDING") && (
             <div>
-              <h1>Instant Trivia</h1>
-              <button onClick={this.handleQuickGame}>Quick Game</button>
-              <button onClick={() => this.transition("CUSTOM")}>Custom</button>
+              <h1>
+                Instant Trivia
+                <a href="#" onClick={this.handleQuickGame}>
+                  <SVGInline svg={arrowRightIcon} />
+                </a>
+              </h1>
+
+              <a href="#" onClick={this.handleGoToCustom}>
+                (custom game...)
+              </a>
             </div>
           )}
 
           {this.shouldShowPhase("CUSTOM") && (
             <div>
-              <h1>Custom Game</h1>
+              <h1 className={styles.backArrowContainer}>
+                <a
+                  className={styles.backArrow}
+                  href="#"
+                  onClick={this.handleBackFromCustom}
+                >
+                  <SVGInline svg={arrowLeftIcon} />
+                </a>
+                Custom Game
+              </h1>
 
               <div>
                 <label>
@@ -185,8 +219,10 @@ class App extends React.Component {
               </div>
 
               <div>
-                <button onClick={this.handleStartCustom}>Start</button>
-                <button onClick={() => this.transition("LANDING")}>Back</button>
+                <a href="#" onClick={this.handleStartCustom}>
+                  Start
+                  <SVGInline svg={arrowRightIcon} />
+                </a>
               </div>
             </div>
           )}

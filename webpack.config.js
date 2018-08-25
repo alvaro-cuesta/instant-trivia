@@ -14,5 +14,6 @@ module.exports = require('@alvaro-cuesta/webpack-parts')
     alias: {
       presentational: path.join(paths.app, 'presentational'),
       smart: path.join(paths.app, 'smart'),
+      icons: path.join(paths.app, 'icons'),
     },
   });

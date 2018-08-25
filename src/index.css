@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 html,
@@ -8,18 +7,25 @@ body {
   padding: 0;
   margin: 0;
 
-  font-family: Times, Times New Roman, Georgia, serif;
-  font-size: 3.5vmin;
-
-  --primary-color: #444039;
+  --text-color: #422c05;
+  --primary-color: #7b6237;
   --highlight-color: #a59258;
-  --active-color: #444039;
-  color: #444039;
+  --active-color: #7b6237;
 
   background-color: #ffd24c;
 }
 
+html, body, input, select, button {
+  font-family: Times, Times New Roman, Georgia, serif;
+  font-size: 3.5vmin;
+}
+
+h1, input, select, button {
+  color: var(--text-color);
+}
+
 a {
+  text-decoration: none;
   color: var(--primary-color);
 }
 
@@ -29,4 +35,16 @@ a:hover {
 
 a:active {
   color: var(--active-color);
+}
+
+a > .SVGInline > .SVGInline-svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: text-bottom;
+}
+
+input, select {
+  background-color: #fff9e0;
+  border: 1px solid var(--text-color);
+  border-radius: 2px;
 }

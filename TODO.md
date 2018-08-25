@@ -3,7 +3,7 @@
 ## Bugs
 
 - Can tab across questions (should probably limit to current question)
-- Correct answer shadow gets cut by `overflow: hidden`
+- With `overflow: hidden` card bleed into each other
 
 ## Features
 

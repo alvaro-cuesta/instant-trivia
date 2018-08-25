@@ -13,7 +13,21 @@
   pointer-events: all;
 }
 
-.github-icon {
+.back-arrow {
+  position: absolute;
+  left: -1em;
+}
+
+.back-arrow-container {
+  position: relative;
+  top: 0;
+  left: 0;
+  line-height: 1em;
+}
+
+.github-link:global(.SVGInline) > :global(.SVGInline-svg) {
+  display: block;
+
   position: absolute;
   bottom: 0;
   right: 0;
@@ -21,14 +35,4 @@
   width: 2.3em;
   height: 2.3em;
   margin: 0.5em;
-
-  fill: var(--primary-color);
-}
-
-.github-icon:hover {
-  fill: var(--highlight-color);
-}
-
-.github-icon:active {
-  fill: var(--active-color);
 }
