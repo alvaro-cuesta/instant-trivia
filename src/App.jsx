@@ -18,6 +18,8 @@ import fetchQuestions from "./fetchQuestions";
 
 import styles from "./App.cssm";
 
+const MAX_QUESTIONS = 50;
+
 class App extends React.Component {
   static PHASE_TO_CURRENT = {
     LANDING: 0,
@@ -87,7 +89,13 @@ class App extends React.Component {
   }
 
   handleCustomLength = ({ target: { value } }) => {
-    this.setState({ customLength: parseInt(value, 10) });
+    const customLength = Math.max(1, Math.min(MAX_QUESTIONS, parseInt(value, 10)));
+
+    if (!isFinite(customLength)) {
+      return;
+    }
+
+    this.setState({ customLength });
   };
 
   handleCustomDifficulty = ({ target: { value } }) => {
@@ -258,7 +266,8 @@ class App extends React.Component {
                 <input
                   id={this.lengthInputId}
                   type="number"
-                  min={0}
+                  min={1}
+                  max={MAX_QUESTIONS}
                   step={1}
                   value={customLength}
                   onChange={this.handleCustomLength}
