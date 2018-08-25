@@ -152,7 +152,7 @@ class App extends React.Component {
           onTransitionEnd={this.handleTransitionEnd}
         >
           {this.shouldShowPhase("LANDING") && (
-            <div>
+            <div className={styles.offCenter}>
               <h1>
                 Instant Trivia
                 <a href="#" onClick={this.handleQuickGame}>
@@ -167,7 +167,7 @@ class App extends React.Component {
           )}
 
           {this.shouldShowPhase("CUSTOM") && (
-            <div>
+            <div className={styles.offCenter}>
               <h1 className={styles.backArrowContainer}>
                 <a
                   className={styles.backArrow}
@@ -230,10 +230,12 @@ class App extends React.Component {
           {this.shouldShowPhase("LOADING") && <Loading />}
 
           {this.shouldShowPhase("ERROR") && (
-            <InternalError
-              error={error}
-              onBack={() => this.transition("LANDING")}
-            />
+            <div className={styles.offCenter}>
+              <InternalError
+                error={error}
+                onBack={() => this.transition("LANDING")}
+              />
+            </div>
           )}
 
           {this.shouldShowPhase("ROUND") && (

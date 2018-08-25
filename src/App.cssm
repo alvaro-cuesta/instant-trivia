@@ -13,6 +13,11 @@
   pointer-events: all;
 }
 
+.off-center {
+  padding-right: 20vw;
+  padding-bottom: 20vh;
+}
+
 .back-arrow {
   position: absolute;
   left: -1em;

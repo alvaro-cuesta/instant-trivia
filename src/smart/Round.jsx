@@ -60,7 +60,7 @@ class Round extends React.Component {
           />
         ))}
 
-        <div>
+        <div className={styles.offCenter}>
           <h1>End game stats</h1>
 
           <p>TODO</p>
