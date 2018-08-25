@@ -1,6 +1,6 @@
 {
   "name": "instant-trivia",
-  "version": "1.1.6",
+  "version": "1.2.0",
   "description": "Instant Trivia game using Open Trivia DB",
   "private": true,
   "scripts": {
