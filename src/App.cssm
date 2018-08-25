@@ -18,6 +18,13 @@
   padding-bottom: 20vh;
 }
 
+.form-fields {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  text-align: right;
+  grid-gap: 0.5vh 1vh;
+}
+
 .back-arrow {
   position: absolute;
   left: -1em;

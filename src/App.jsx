@@ -25,15 +25,23 @@ class App extends React.Component {
     ROUND: 4
   };
 
-  state = {
-    fromPhase: null,
-    phase: "LANDING",
-    customLength: 10,
-    customDifficulty: undefined,
-    customType: undefined,
-    questions: null,
-    error: null
-  };
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      fromPhase: null,
+      phase: "LANDING",
+      customLength: 10,
+      customDifficulty: undefined,
+      customType: undefined,
+      questions: null,
+      error: null
+    };
+
+    this.lengthInputId = Math.random().toString();
+    this.difficultyInputId = Math.random().toString();
+    this.typeInputId = Math.random().toString();
+  }
 
   handleQuickGame = (e) => {
     e.preventDefault();
@@ -176,53 +184,55 @@ class App extends React.Component {
                 >
                   <SVGInline svg={arrowLeftIcon} />
                 </a>
+
                 Custom Game
               </h1>
 
-              <div>
-                <label>
-                  Questions:
-                  <input
-                    type="number"
-                    min={0}
-                    step={1}
-                    value={customLength}
-                    onChange={this.handleCustomLength}
-                  />
-                </label>
-              </div>
+              <div className={styles.formFields}>
+                <label htmlFor={this.lengthInputId}>Questions</label>
 
-              <div>
-                <label>
-                  Difficulty:
-                  <select
-                    value={customDifficulty}
-                    onChange={this.handleCustomDifficulty}
-                  >
-                    <option value="">Any</option>
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                  </select>
-                </label>
-              </div>
+                <input
+                  id={this.lengthInputId}
+                  type="number"
+                  min={0}
+                  step={1}
+                  value={customLength}
+                  onChange={this.handleCustomLength}
+                />
 
-              <div>
-                <label>
-                  Type:
-                  <select value={customType} onChange={this.handleCustomType}>
-                    <option value="">Any</option>
-                    <option value="multiple">Multiple Choice</option>
-                    <option value="boolean">True / False</option>
-                  </select>
-                </label>
-              </div>
+                <label htmlFor={this.difficultyInputId}>Difficulty</label>
 
-              <div>
-                <a href="#" onClick={this.handleStartCustom}>
-                  Start
-                  <SVGInline svg={arrowRightIcon} />
-                </a>
+                <select
+                  id={this.difficultyInputId}
+                  value={customDifficulty}
+                  onChange={this.handleCustomDifficulty}
+                >
+                  <option value="">Any</option>
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                </select>
+
+                <label htmlFor={this.typeInputId}>Type</label>
+
+                <select
+                  id={this.typeInputId}
+                  value={customType}
+                  onChange={this.handleCustomType}
+                >
+                  <option value="">Any</option>
+                  <option value="multiple">Multiple Choice</option>
+                  <option value="boolean">True / False</option>
+                </select>
+
+                <div />
+
+                <div>
+                  <a href="#" onClick={this.handleStartCustom}>
+                    Start
+                    <SVGInline svg={arrowRightIcon} />
+                  </a>
+                </div>
               </div>
             </div>
           )}
