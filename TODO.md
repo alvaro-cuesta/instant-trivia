@@ -1,21 +1,23 @@
 # TODO
 
-## Bugs
+## Not triaged
 
-## Features
+### Bugs
 
-- Favicon
-- Animation when arrows appear/disappear
+### Features
 
-## Meta
+### Meta
 
 - Move visual styles out of CSS module
+- Redux instead of smart components?
 
 ## Roadmap
 
 ### 1.x
 
-- Style landing page
+- Favicon
+- Error boundary
+- Animation when arrows appear/disappear
 - Style custom options
 - Open Trivia DB license notice
 
@@ -32,6 +34,7 @@
   - https://opentdb.com/api_category.php
   - https://opentdb.com/api_count.php?category=CATEGORY_ID_HERE
   - https://opentdb.com/api_count_global.php
+- Answer status on sidebar? Progress-like?
 
 ### 3.x
 
