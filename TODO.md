@@ -6,10 +6,13 @@
 
 ### Features
 
+- Navigation with arrow keys
+
 ### Meta
 
 - Move visual styles out of CSS module
 - Redux instead of smart components?
+- Minify CSS
 
 ## Roadmap
 
@@ -29,15 +32,18 @@
 - Game end
   - Style
   - Number of won/lost
-  - Can go back and forth
   - Can see difficulty
+  - Answer status on sidebar?
+    - While answering too?
+    - Red/green/grey cells?
+    - Click on cell takes to the answer (if game finished)?
 - Categories
   - Select in custom
   - Show in cards
   - https://opentdb.com/api_category.php
   - https://opentdb.com/api_count.php?category=CATEGORY_ID_HERE
   - https://opentdb.com/api_count_global.php
-- Answer status on sidebar? Progress-like?
+
 
 ### 3.x
 
