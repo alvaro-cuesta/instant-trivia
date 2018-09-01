@@ -8,15 +8,22 @@ Live demo: https://alvaro-cuesta.github.io/instant-trivia/
 
 - Start a development server at http://localhost:8080:
 
-```sh
-yarn dev
-```
+    ```sh
+    yarn start
+    ```
+
+- ...or accessible from anywhere (generally LAN and, if your ports are
+    forwarded, including the internet):
+
+    ```sh
+    yarn public
+    ```
 
 - Build the application in the `build/` directory:
 
-```sh
-yarn build
-```
+    ```sh
+    yarn build
+    ```
 
 - See [open tasks](TODO.md)
 

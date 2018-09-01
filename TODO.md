@@ -13,6 +13,7 @@
 - Move visual styles out of CSS module
 - Redux instead of smart components?
 - Minify CSS
+- Use symbols for phases and Redux action types
 
 ## Roadmap
 
