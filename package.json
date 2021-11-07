@@ -18,7 +18,7 @@
     "type": "git",
     "url": "https://www.github.com/alvaro-cuesta/instant-trivia.git"
   },
-  "homepage": "https://github.com/alvaro-cuesta/instant-trivia#readme",
+  "homepage": "https://trivia.kaod.me",
   "bugs": "https://github.com/alvaro-cuesta/instant-trivia/issues",
   "keywords": [
     "trivia",
@@ -32,7 +32,7 @@
   },
   "license": "ISC",
   "devDependencies": {
-    "@alvaro-cuesta/webpack-parts": "^0.12.2",
+    "@alvaro-cuesta/webpack-parts": "^0.12.3",
     "react-hot-loader": "^4.2.0",
     "webpack": "^4.16.0",
     "webpack-cli": "^3.0.8",

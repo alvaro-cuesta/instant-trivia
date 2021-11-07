@@ -30,7 +30,7 @@ Live demo: https://alvaro-cuesta.github.io/instant-trivia/
 ## Publishing
 
 1. `yarn version --(major | minor | patch)`
-2. `yarn deploy`
+2. `GITHUB_CUSTOM_DOMAIN=1 yarn deploy`
 3. `git push && git push --tags`
 
 ## Open Trivia DB License
