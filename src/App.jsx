@@ -243,8 +243,8 @@ class App extends React.Component {
           {this.shouldShowPhase('LANDING') && (
             <div className={styles.offCenter}>
               <h1>
-                Instant Trivia
                 <a href="#" onClick={this.handleQuickGame} title="Quick game">
+                  <span className={styles.brightLink}>Instant Trivia</span>
                   <SVGInline svg={arrowRightIcon} />
                 </a>
               </h1>
