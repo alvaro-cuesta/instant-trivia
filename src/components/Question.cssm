@@ -7,7 +7,7 @@
   margin: 5vh;
 
   border-radius: 10px;
-  box-shadow: 0px 9px 50px -3px rgba(107, 89, 107, 1.0);
+  box-shadow: 0px 9px 50px -3px rgba(107, 89, 107, 1);
   background-color: #eceff1;
 }
 
@@ -55,7 +55,7 @@
 
 .answer:not(.correct):not(.incorrect):hover {
   background-color: #ffe390;
-  box-shadow: 8px 8px 30px -20px rgba(0,0,0,0.46) inset;
+  box-shadow: 8px 8px 30px -20px rgba(0, 0, 0, 0.46) inset;
 }
 
 .answer:not(.correct):not(.incorrect):focus {
@@ -64,12 +64,12 @@
 
 .answer:not(.correct):not(.incorrect):active {
   background-color: #ffe390;
-  box-shadow: 8px 8px 40px -20px rgba(0,0,0,0.76) inset;
+  box-shadow: 8px 8px 40px -20px rgba(0, 0, 0, 0.76) inset;
 }
 
 .answer.correct {
   background-color: #76c3e0;
-  box-shadow: 0px 6px 30px -10px rgba(0,0,0,0.76);
+  box-shadow: 0px 6px 30px -10px rgba(0, 0, 0, 0.76);
   border: 2px solid transparent;
   transition: background-color 0.5s ease-out, box-shadow 1.5s ease-out;
 }
@@ -80,15 +80,14 @@
 
 .answer.selected.correct {
   background-color: #84ff76;
-  box-shadow: 8px 8px 40px -20px rgba(0,0,0,0.76) inset;
+  box-shadow: 8px 8px 40px -20px rgba(0, 0, 0, 0.76) inset;
   transition: none;
 }
 
 .answer.selected.incorrect {
   background-color: #f76b64;
-  box-shadow: 8px 8px 40px -20px rgba(0,0,0,1) inset;
+  box-shadow: 8px 8px 40px -20px rgba(0, 0, 0, 1) inset;
 }
-
 
 @media all and (min-aspect-ratio: 7/6) {
   .card {

@@ -12,17 +12,24 @@ body {
   --primary-color: #7b6237;
   --highlight-color: #a59258;
   --active-color: #bfaf7b;
-  --disabled-color: #e6c156/*c5b380*/;
+  --disabled-color: #e6c156 /*c5b380*/;
 
   background-color: #ffd24c;
 }
 
-html, body, input, select, button {
+html,
+body,
+input,
+select,
+button {
   font-family: Times, Times New Roman, Georgia, serif;
   font-size: 3.5vmin;
 }
 
-h1, input, select, button {
+h1,
+input,
+select,
+button {
   color: var(--text-color);
 }
 
@@ -50,7 +57,8 @@ a > .SVGInline > .SVGInline-svg {
   vertical-align: text-bottom;
 }
 
-input, select {
+input,
+select {
   background-color: #fff9e0;
   border: 1px solid var(--text-color);
   border-radius: 2px;

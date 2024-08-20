@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import cx from "classnames";
+import React from 'react'
+import PropTypes from 'prop-types'
+import cx from 'classnames'
 
-import styles from "./Question.cssm";
+import styles from './Question.cssm'
 
 const Question = ({
   question,
@@ -22,7 +22,7 @@ const Question = ({
           className={cx(styles.answer, {
             [styles.selected]: selected === answerIndex,
             [styles.correct]: selected !== undefined && answerIndex === 0,
-            [styles.incorrect]: selected !== undefined && answerIndex !== 0
+            [styles.incorrect]: selected !== undefined && answerIndex !== 0,
           })}
           onClick={() => onAnswer(answerIndex)}
           tabindex={isViewing ? buttonIndex + 1 : -1}
@@ -32,7 +32,7 @@ const Question = ({
       ))}
     </div>
   </div>
-);
+)
 
 Question.propTypes = {
   question: PropTypes.string.isRequired,
@@ -41,6 +41,6 @@ Question.propTypes = {
   selected: PropTypes.number,
   onAnswer: PropTypes.func.isRequired,
   isViewing: PropTypes.bool,
-};
+}
 
-export default Question;
+export default Question

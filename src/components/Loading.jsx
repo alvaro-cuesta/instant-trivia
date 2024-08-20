@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-import styles from "./Loading.cssm";
+import styles from './Loading.cssm'
 
 const Loading = () => (
   <div>
@@ -8,6 +8,6 @@ const Loading = () => (
     <div className={styles.square} />
     <div className={styles.square} />
   </div>
-);
+)
 
 export default Loading
