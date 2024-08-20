@@ -21,6 +21,10 @@ class Round extends React.Component {
     const { questions, answers, viewingQuestion, makeHandleAnswer, onFinish } =
       this.props
 
+    const correctAnswers = answers.filter((a, i) => a === 0).length
+    const totalQuestions = questions.length
+    const percentage = Math.round((correctAnswers / totalQuestions) * 100)
+
     return (
       <ScrollLayout current={viewingQuestion}>
         {questions.map((question, i) => (
@@ -38,16 +42,18 @@ class Round extends React.Component {
         ))}
 
         <div className={styles.offCenter}>
-          <h1>End game stats</h1>
-
-          <p>TODO</p>
-
+          <h1>
+            Score: {percentage}%{' '}
+            <small>
+              ({correctAnswers} out of {totalQuestions})
+            </small>
+          </h1>
           <div className={styles.backArrowContainer}>
             <a
               className={styles.backArrow}
               href="#"
               onClick={this.handleFinish}
-              tabindex={viewingQuestion === questions.length ? 1 : -1}
+              tabIndex={viewingQuestion === questions.length ? 1 : -1}
             >
               <SVGInline svg={arrowLeftIcon} />
               Finish
