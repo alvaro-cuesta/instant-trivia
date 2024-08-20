@@ -25,7 +25,7 @@ const Question = ({
             [styles.incorrect]: selected !== undefined && answerIndex !== 0,
           })}
           onClick={() => onAnswer(answerIndex)}
-          tabindex={isViewing ? buttonIndex + 1 : -1}
+          tabIndex={isViewing ? buttonIndex + 1 : -1}
         >
           {answers[answerIndex]}
         </button>
