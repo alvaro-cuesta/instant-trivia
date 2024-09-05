@@ -2,7 +2,7 @@
 
 Instant Trivia game using [Open Trivia DB](https://opentdb.com).
 
-Live demo: https://alvaro-cuesta.github.io/instant-trivia/
+Live demo: https://trivia.cuesta.dev/
 
 ## Development
 
