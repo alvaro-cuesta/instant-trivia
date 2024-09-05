@@ -11,14 +11,14 @@
     "preversion": "yarn build",
     "deploy": "yarn deploy:gh-pages",
     "predeploy:gh-pages": "cross-env GITHUB_CUSTOM_DOMAIN=1 yarn build:gh-pages",
-    "deploy:gh-pages": "echo trivia.kaod.me > ./build/CNAME && webpack-parts-deploy-gh-pages",
+    "deploy:gh-pages": "echo trivia.cuesta.dev > ./build/CNAME && webpack-parts-deploy-gh-pages",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "https://www.github.com/alvaro-cuesta/instant-trivia.git"
   },
-  "homepage": "https://trivia.kaod.me",
+  "homepage": "https://trivia.cuesta.dev",
   "bugs": "https://github.com/alvaro-cuesta/instant-trivia/issues",
   "keywords": [
     "trivia",
