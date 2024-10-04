@@ -51,6 +51,8 @@
   font-family: Times, Times New Roman, Georgia, serif;
 
   transition: background-color 0.05s ease-out;
+
+  cursor: pointer;
 }
 
 .answer:not(.correct):not(.incorrect):hover {
