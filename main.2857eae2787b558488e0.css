@@ -192,6 +192,8 @@ select {
   font-family: Times, Times New Roman, Georgia, serif;
 
   transition: background-color 0.05s ease-out;
+
+  cursor: pointer;
 }
 
 ._3JRwVi-q57YN44GnckYr45:not(._3SqGPCV6LGr_b24tUmB-Ty):not(._3OxTaJPap64hw-iV8CjFxR):hover {
@@ -326,4 +328,4 @@ select {
 }
 
 
-/*# sourceMappingURL=main.5006d7dfd96c607b451c.css.map*/
+/*# sourceMappingURL=main.2857eae2787b558488e0.css.map*/
